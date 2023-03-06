@@ -1,29 +1,43 @@
 import { combineClassName } from '@/utils';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { useState } from 'react';
-
-const Artwork = () => {
+import { saveAs } from 'file-saver';
+type ArtWordProps = {
+  src: string;
+};
+const Artwork = ({ src }: ArtWordProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const handleOnSave = () => {
+    saveAs(src, 'image.jpg');
+  };
   return (
-    <a href="#" className="group">
-      <div className="rounded-lg bg-gray-200">
-        <Image
-          alt=""
-          width={1024}
-          height={1024}
-          src="/sample_dalle_pic.png"
-          className={combineClassName(
-            'group-hover:opacity-75 object-cover',
-            isLoading
-              ? 'grayscale blur-2xl scale-110'
-              : 'grayscale-0 blur-0 scale-100'
-          )}
-          onLoadingComplete={() => setIsLoading(false)}
-        />
-      </div>
-      <h3 className="mt-4 text-sm text-gray-700">Vu Nguyen</h3>
-      <p className="mt-1 text-lg font-medium text-gray-900">@vunguyen</p>
-    </a>
+    <div className="relative w-full h-full">
+      <NextImage
+        alt=""
+        fill
+        src={src}
+        className={combineClassName(
+          'rounded-lg',
+          isLoading
+            ? 'grayscale blur-2xl scale-110'
+            : 'grayscale-0 blur-0 scale-100'
+        )}
+        onLoadingComplete={() => setIsLoading(false)}
+      />
+      <button
+        onClick={handleOnSave}
+        className="bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-300 font-bold py-2 px-4 rounded inline-flex items-center absolute right-2 top-2 text-xs"
+      >
+        <svg
+          className="fill-current w-4 h-4 mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+        </svg>
+        <span>Save</span>
+      </button>
+    </div>
   );
 };
 

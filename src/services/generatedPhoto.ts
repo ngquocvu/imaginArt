@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-export const fetchAllGeneratedPhoto = async () => {
+export const fetchAllGeneratedPhoto = async (prompt: string) => {
   try {
-    const { data } = await axios.get(
-      'https://jsonplaceholder.typicode.com/todos'
-    );
-    return data;
+    const body = {
+      prompt,
+    };
+    const { data } = await axios.post(`/api/generate-picture`, body);
+    return data.data;
   } catch (e) {
     throw new Error('Getting error when fetching data');
   }

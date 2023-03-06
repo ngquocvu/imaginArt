@@ -4,6 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Shadows+Into+Light+Two&display=swap');
 
-* {
+html {
   font-family: 'Inter', sans-serif;
 }

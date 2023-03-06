@@ -1,8 +1,7 @@
 import { GeneratedPhotoTypes } from '@/custom-types/common';
 import { createModuleActions } from '@/utils/reduxTools';
 import { call, delay, put, takeLatest } from 'redux-saga/effects';
-import { createSlice } from '@reduxjs/toolkit';
-import { createActions } from 'redux-actions';
+import { createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
 import { fetchAllGeneratedPhoto } from '@/services/generatedPhoto';
 const initialState: GeneratedPhotoTypes = {
@@ -11,10 +10,11 @@ const initialState: GeneratedPhotoTypes = {
   error: null,
 };
 
-const generatedPhotoFetchActions = createModuleActions<GeneratedPhotoTypes>(
-  'generatedPhoto',
-  'fetch'
-);
+const generatedPhotoFetchActions = createModuleActions<
+  string,
+  GeneratedPhotoTypes,
+  GeneratedPhotoTypes
+>('generatedPhoto', 'fetch');
 
 export const generatedPhotoSlice = createSlice({
   name: 'generatedPhoto',
@@ -36,10 +36,13 @@ export const generatedPhotoSlice = createSlice({
   },
 });
 
-const fetchGeneratedPhotoSagaHandler = function* () {
+const fetchGeneratedPhotoSagaHandler = function* (
+  action: PayloadAction<string>
+) {
   try {
-    const data: string = yield call(() => fetchAllGeneratedPhoto());
-    yield delay(1000);
+    const data: string = yield call(() =>
+      fetchAllGeneratedPhoto(action.payload)
+    );
     yield put(
       generatedPhotoFetchActions.SUCCESS({
         data: data,
@@ -72,8 +75,8 @@ export const useStates = () => {
 
 export const useActions = () => {
   const dispatch = useAppDispatch();
-  const fetchGeneratedPhoto = () =>
-    dispatch(generatedPhotoFetchActions.REQUEST());
+  const fetchGeneratedPhoto = (prompt: string) =>
+    dispatch(generatedPhotoFetchActions.REQUEST(prompt));
   return {
     fetchGeneratedPhoto,
   };
