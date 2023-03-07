@@ -18,9 +18,9 @@ const Introduce = () => {
   return (
     <div
       id="introduce"
-      className={`min-h-screen snap-start flex-col flex backdrop-opacity-60 bg-gray-900`}
+      className={`min-h-screen snap-start flex-col flex backdrop-opacity-60 w-full bg-gray-900`}
     >
-      <div className="max-w-2xl w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:min-w-5xl lg:max-w-7xl lg:px-8 flex flex-col items-center justify-around min-h-screen">
+      <div className="max-w-2xl w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:min-w-5xl lg:max-w-7xl lg:px-8 flex flex-col items-center justify-around min-h-screen overflow-x-hidden">
         <BackgroundBlob />
         <div>
           <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6x text-center dark:text-gray-100">
@@ -43,7 +43,7 @@ const Introduce = () => {
           <Button onClick={() => router.push('#gallery')} />
         </div>
         <div className="text-gray-200 font-mono">
-          Credits: Vu Nguyen - OpenAI API
+          Credits: Vu Nguyen x OpenAI API
         </div>
       </div>
     </div>

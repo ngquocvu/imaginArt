@@ -61,12 +61,12 @@ const Post = () => {
               {generatedPhoto.pending ? (
                 <>
                   <div className="w-full h-1 rounded-xl relative animate-loader" />
-                  <div className="w-full h-full flex flex-col justify-center items-center font-mono dark:text-gray-500">
+                  <div className="w-full h-full flex flex-col justify-center items-center font-mono dark:text-gray-500 text-sm">
                     <p>{time}s</p>
                     <p>Estimated time: 10-20s</p>
                     <p>
                       Tips: Hover the generated photo to see its prompt and
-                      download button{' '}
+                      download button
                     </p>
                   </div>
                 </>
