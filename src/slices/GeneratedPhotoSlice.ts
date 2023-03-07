@@ -1,23 +1,20 @@
-import { GeneratedPhotoTypes } from '@/custom-types/common';
+import { ReduxGeneratedPhotoTypes } from '@/custom-types/common';
 import { createModuleActions } from '@/utils/reduxTools';
 import { call, delay, put, takeLatest } from 'redux-saga/effects';
 import { createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
-import { fetchAllGeneratedPhoto } from '@/services/generatedPhoto';
-import { fetchGeneratedProtoTypes } from '@/custom-types';
-const initialState: GeneratedPhotoTypes = {
+import { getGeneratedPhoto } from '@/services/generatedPhoto';
+import { GeneratedProtoTypes } from '@/custom-types';
+const initialState: ReduxGeneratedPhotoTypes = {
   pending: false,
-  data: {
-    img: null,
-    prompt: null,
-  },
+  data: null,
   error: null,
 };
 
 const generatedPhotoFetchActions = createModuleActions<
   string,
-  GeneratedPhotoTypes,
-  GeneratedPhotoTypes
+  GeneratedProtoTypes,
+  undefined
 >('generatedPhoto', 'fetch');
 
 export const generatedPhotoSlice = createSlice({
@@ -30,12 +27,19 @@ export const generatedPhotoSlice = createSlice({
       pending: true,
     }));
     builder.addCase(generatedPhotoFetchActions.SUCCESS, (state, action) => {
-      return { ...state, data: action.payload.data, pending: false };
+      return {
+        ...state,
+        pending: false,
+        data: {
+          img: action.payload.img,
+          prompt: action.payload.prompt,
+        },
+      };
     });
-    builder.addCase(generatedPhotoFetchActions.FAILURE, (state, action) => ({
+    builder.addCase(generatedPhotoFetchActions.FAILURE, (state) => ({
       ...state,
       pending: false,
-      error: action.payload.error,
+      error: 'There are errors happened while generating data',
     }));
   },
 });
@@ -44,27 +48,12 @@ const fetchGeneratedPhotoSagaHandler = function* (
   action: PayloadAction<string>
 ) {
   try {
-    const data: fetchGeneratedProtoTypes = yield call(() =>
-      fetchAllGeneratedPhoto(action.payload)
+    const data: GeneratedProtoTypes = yield call(() =>
+      getGeneratedPhoto(action.payload)
     );
-    yield put(
-      generatedPhotoFetchActions.SUCCESS({
-        pending: false,
-        data: {
-          img: data.img,
-          prompt: data.prompt,
-        },
-        error: null,
-      })
-    );
+    yield put(generatedPhotoFetchActions.SUCCESS(data));
   } catch (e) {
-    yield put(
-      generatedPhotoFetchActions.FAILURE({
-        data: null,
-        pending: false,
-        error: "Can't fetch data due to errors",
-      })
-    );
+    yield put(generatedPhotoFetchActions.FAILURE());
   }
 };
 

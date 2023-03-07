@@ -1,8 +1,8 @@
-export type GeneratedPhotoTypes = {
+export type ReduxGeneratedPhotoTypes = {
   pending: boolean;
   data: {
-    img: string | null;
-    prompt: string | null;
+    img: string;
+    prompt: string;
   } | null;
   error: string | null;
 };

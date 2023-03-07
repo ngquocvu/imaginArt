@@ -1,18 +1,24 @@
 import React from 'react';
 
 type Props = {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
   pending?: boolean;
   value?: string;
-  onInputValue: (value: string) => void;
+  rightButtonValue: string;
+  placeholder?: string;
+  onInputValue?: (value: string) => void;
+  className?: string;
 };
 
 const Input = ({
   onSubmit,
+  rightButtonValue,
   disabled = false,
   pending = false,
   value = '',
+  placeholder = '',
+  className = '',
   onInputValue,
 }: Props) => {
   const disabledStyles = 'cursor-not-allowed';
@@ -20,21 +26,26 @@ const Input = ({
   return (
     <form
       className={`w-full relative`}
-      onSubmit={(e: React.FormEvent<HTMLFormElement>) => onSubmit(e)}
+      onSubmit={
+        onSubmit
+          ? (e: React.FormEvent<HTMLFormElement>) => onSubmit(e)
+          : undefined
+      }
     >
       <input
         type="text"
         value={value}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          onInputValue(e.target.value)
+        onChange={
+          onInputValue
+            ? (e: React.ChangeEvent<HTMLInputElement>) =>
+                onInputValue(e.target.value)
+            : undefined
         }
         id="search"
         className={`bg-opacity-20 bg-gray-600 backdrop-blur-lg drop-shadow-lg block w-full p-5 pr-28 text-gray-100 border font-semibold rounded-full focus:ring-blue-300 focus:border-blue-400 focus:outline-none border-none ${
           disabled && disabledStyles
-        } ${pendingStyles}`}
-        placeholder={
-          'An oil pastel drawing of an annoyed cat in a spaceship...'
-        }
+        } ${pendingStyles} ${className}`}
+        placeholder={placeholder}
         required
         disabled={disabled}
       />
@@ -45,7 +56,7 @@ const Input = ({
         }`}
         disabled={disabled}
       >
-        {pending ? 'Drawing...' : 'Draw'}
+        {rightButtonValue}
       </button>
     </form>
   );

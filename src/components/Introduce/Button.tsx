@@ -9,7 +9,7 @@ const Button = ({ onClick }: Props) => {
   return (
     <button
       onClick={onClick}
-      className=" text-white font-bold py-3 px-12 rounded-sm bg-gray-600 bg-opacity-50"
+      className=" text-white font-bold py-3 px-12 rounded-full bg-gray-600 bg-opacity-50"
     >
       Community Gallery
     </button>

@@ -32,6 +32,10 @@ const Introduce = () => {
         </div>
         <div className="flex gap-10 flex-col w-full justify-center items-center mt-4 max-w-5xl">
           <Input
+            rightButtonValue="Draw"
+            placeholder={
+              'An oil pastel drawing of an annoyed cat in a spaceship...'
+            }
             value={inputValue}
             onInputValue={setInputValue}
             onSubmit={(e) => handleOnSubmit(e)}
