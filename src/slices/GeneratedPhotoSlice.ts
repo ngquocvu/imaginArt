@@ -4,9 +4,13 @@ import { call, delay, put, takeLatest } from 'redux-saga/effects';
 import { createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
 import { fetchAllGeneratedPhoto } from '@/services/generatedPhoto';
+import { fetchGeneratedProtoTypes } from '@/custom-types';
 const initialState: GeneratedPhotoTypes = {
   pending: false,
-  data: null,
+  data: {
+    img: null,
+    prompt: null,
+  },
   error: null,
 };
 
@@ -40,13 +44,16 @@ const fetchGeneratedPhotoSagaHandler = function* (
   action: PayloadAction<string>
 ) {
   try {
-    const data: string = yield call(() =>
+    const data: fetchGeneratedProtoTypes = yield call(() =>
       fetchAllGeneratedPhoto(action.payload)
     );
     yield put(
       generatedPhotoFetchActions.SUCCESS({
-        data: data,
         pending: false,
+        data: {
+          img: data.img,
+          prompt: data.prompt,
+        },
         error: null,
       })
     );

@@ -6,7 +6,7 @@ export const fetchAllGeneratedPhoto = async (prompt: string) => {
       prompt,
     };
     const { data } = await axios.post(`/api/generate-picture`, body);
-    return data.data;
+    return data;
   } catch (e) {
     throw new Error('Getting error when fetching data');
   }

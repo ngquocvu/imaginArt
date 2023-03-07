@@ -1,5 +1,8 @@
 export type GeneratedPhotoTypes = {
   pending: boolean;
-  data: string | null;
+  data: {
+    img: string | null;
+    prompt: string | null;
+  } | null;
   error: string | null;
 };

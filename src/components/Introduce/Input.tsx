@@ -16,7 +16,7 @@ const Input = ({
   onInputValue,
 }: Props) => {
   const disabledStyles = 'cursor-not-allowed';
-  const pendingStyles = pending ? 'bg-gray-200 animate-pulse' : 'bg-gray-50';
+  const pendingStyles = pending ? 'animate-pulse' : '';
   return (
     <form
       className={`w-full relative`}
@@ -29,7 +29,7 @@ const Input = ({
           onInputValue(e.target.value)
         }
         id="search"
-        className={`block w-full p-4 pr-28 text-gray-900 border font-semibold border-gray-300 rounded-lg focus:ring-blue-300 focus:border-blue-400 focus:outline-none dark:bg-gray-800 dark:text-gray-100 dark:border-gray-300 ${
+        className={`bg-opacity-20 bg-gray-600 backdrop-blur-lg drop-shadow-lg block w-full p-5 pr-28 text-gray-100 border font-semibold rounded-full focus:ring-blue-300 focus:border-blue-400 focus:outline-none border-none ${
           disabled && disabledStyles
         } ${pendingStyles}`}
         placeholder={
@@ -40,7 +40,7 @@ const Input = ({
       />
       <button
         type="submit"
-        className={`px-3 py-2 text-gray-500 border-l-2 font-bold border-gray-500 absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:text-gray-300 ${
+        className={`px-3 py-2 text-gray-300 font-bold border-gray-500 absolute right-3 top-3 focus:ring-4 focus:outline-none bg-gray-700 bg-opacity-70 rounded-full ${
           disabled && disabledStyles
         }`}
         disabled={disabled}
