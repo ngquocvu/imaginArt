@@ -5,9 +5,9 @@ import { saveAs } from 'file-saver';
 type ArtWordProps = {
   src: string;
   prompt?: string;
-  artist?: string;
+  artist?: string | null;
 };
-const Artwork = ({ src, prompt = '', artist }: ArtWordProps) => {
+const Artwork = ({ src, prompt = '', artist = null }: ArtWordProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const handleOnSave = () => {
     saveAs(src, `${prompt}.jpg`);
@@ -41,8 +41,7 @@ const Artwork = ({ src, prompt = '', artist }: ArtWordProps) => {
       </button>
       <div className="hidden group-hover:block absolute left-2 bottom-2 font-bold text-gray-200 text-base md:text-xl m-4">
         {prompt}
-
-        <div className="md:text-base text-sm">- {artist} -</div>
+        {artist && <div className="md:text-base text-sm">- {artist} -</div>}
       </div>
     </div>
   );
