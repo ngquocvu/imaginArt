@@ -5,10 +5,15 @@ export type PostTypes = {
   _id: string;
 };
 
-export type ReduxPostTypes = {
+export type ReduxPostsTypes = {
   pending: boolean;
   data: PostTypes[];
   error: string | null;
 };
 
+export type ReduxUploadPostTypes = {
+  pending: boolean;
+  data: string | null;
+  error: string | null;
+};
 export type PostTypesOmitID = Omit<PostTypes, '_id'>;

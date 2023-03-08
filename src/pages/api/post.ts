@@ -51,4 +51,13 @@ const PostHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 };
+
 export default PostHandler;
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '6mb', // Set desired value here
+    },
+  },
+};

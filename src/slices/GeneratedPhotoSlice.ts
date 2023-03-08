@@ -20,7 +20,11 @@ const generatedPhotoFetchActions = createModuleActions<
 export const generatedPhotoSlice = createSlice({
   name: 'generatedPhoto',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    resetGeneratedPhotoState() {
+      return initialState;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(generatedPhotoFetchActions.REQUEST, (state) => ({
       ...state,
@@ -64,6 +68,8 @@ export const watcherSaga = function* () {
   );
 };
 
+const { resetGeneratedPhotoState: resetGeneratedPhotoAction } =
+  generatedPhotoSlice.actions;
 export const useStates = () => {
   const generatedPhoto = useAppSelector((state) => state.generatedPhoto);
   return { generatedPhoto };
@@ -73,7 +79,9 @@ export const useActions = () => {
   const dispatch = useAppDispatch();
   const fetchGeneratedPhoto = (prompt: string) =>
     dispatch(generatedPhotoFetchActions.REQUEST(prompt));
+  const resetGeneratedPhotoState = () => dispatch(resetGeneratedPhotoAction());
   return {
     fetchGeneratedPhoto,
+    resetGeneratedPhotoState,
   };
 };

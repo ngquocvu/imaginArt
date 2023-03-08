@@ -5,14 +5,15 @@ import { saveAs } from 'file-saver';
 type ArtWordProps = {
   src: string;
   prompt?: string;
+  artist?: string;
 };
-const Artwork = ({ src, prompt = '' }: ArtWordProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const Artwork = ({ src, prompt = '', artist }: ArtWordProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const handleOnSave = () => {
-    saveAs(src, 'image.jpg');
+    saveAs(src, `${prompt}.jpg`);
   };
   return (
-    <div className="relative w-full h-full group">
+    <div className="relative w-full h-full group bg-gray-800 backdrop-blur-lg">
       <NextImage
         alt={prompt}
         fill
@@ -38,8 +39,10 @@ const Artwork = ({ src, prompt = '' }: ArtWordProps) => {
         </svg>
         <span>Save</span>
       </button>
-      <div className="hidden group-hover:block absolute left-2 bottom-2 font-bold text-gray-200">
+      <div className="hidden group-hover:block absolute left-2 bottom-2 font-bold text-gray-200 text-base md:text-xl m-4">
         {prompt}
+
+        <div className="md:text-base text-sm">- {artist} -</div>
       </div>
     </div>
   );
