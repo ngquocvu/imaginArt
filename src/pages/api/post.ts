@@ -36,7 +36,7 @@ const PostHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     case HttpMethods.GET: {
       try {
         mongoConnect(process.env.MONGODB_URL);
-        const posts = await Post.find({});
+        const posts = await Post.find({}).sort({ _id: -1 });
         res.status(200).json({ success: true, data: posts });
       } catch (err) {
         res.status(500).json({

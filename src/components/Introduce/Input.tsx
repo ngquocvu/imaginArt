@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../Common/Spinner';
 
 type Props = {
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -65,16 +66,22 @@ const Input = ({
         required
         disabled={disabled}
       />
-      {rightButtonValue && (
-        <button
-          type="submit"
-          className={`px-3 py-2 text-gray-300 text-sm md:text-base font-bold border-gray-500 absolute right-3 top-3 ${
-            getVariantStyles().buttonStyles
-          } ${disabled && disabledStyles}`}
-          disabled={disabled}
-        >
-          {rightButtonValue}
-        </button>
+      {pending ? (
+        <div className="absolute right-4 top-4">
+          <Spinner />
+        </div>
+      ) : (
+        rightButtonValue && (
+          <button
+            type="submit"
+            className={`px-3 py-2 text-gray-300 text-sm md:text-base font-bold border-gray-500 absolute right-3 top-3 ${
+              getVariantStyles().buttonStyles
+            } ${disabled && disabledStyles}`}
+            disabled={disabled}
+          >
+            {rightButtonValue}
+          </button>
+        )
       )}
     </form>
   );

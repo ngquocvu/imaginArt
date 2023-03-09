@@ -1,5 +1,6 @@
 import { useAppDispatch } from '@/hooks/useRedux';
 import { useActions } from '@/slices/GeneratedPhotoSlice';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { surpriseMePrompts } from '../../constants/prompts';
@@ -26,12 +27,12 @@ const Introduce = () => {
   return (
     <div
       id="introduce"
-      className={`min-h-screen snap-start flex-col flex backdrop-opacity-60 w-screen`}
+      className={`snap-start flex-col flex backdrop-opacity-60`}
     >
       <div className="max-w-2xl w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:min-w-5xl lg:max-w-7xl lg:px-8 flex flex-col items-center justify-around min-h-screen overflow-x-hidden">
         <BackgroundBlob />
         <div>
-          <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6x text-center dark:text-gray-100">
+          <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6x text-center backdrop-blur-2xl px-8 py-3 text-gray-50 text-opacity-80">
             Artwork Generator
           </div>
           <div className="mb-4 text-lg md:text-xl font-bold leading-none tracking-tight text-gray-400 text-center dark:text-gray-400">
@@ -56,8 +57,15 @@ const Introduce = () => {
             />
           </div>
         </div>
-        <div className="text-gray-200 font-mono text-center text-xs md:text-base">
-          Credits: Vu Nguyen - Powered by OpenAI
+        <div className="text-gray-200 font-mono text-center text-xs md:text-base absolute bottom-5">
+          Credits:{' '}
+          <Link
+            href="https://github.com/nguyen-quoc-vu"
+            className="text-blue-500 underline"
+          >
+            Vu Nguyen
+          </Link>{' '}
+          - Powered by OpenAI
         </div>
       </div>
     </div>

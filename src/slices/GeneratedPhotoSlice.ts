@@ -27,7 +27,8 @@ export const generatedPhotoSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(generatedPhotoFetchActions.REQUEST, (state) => ({
-      ...state,
+      data: null,
+      error: null,
       pending: true,
     }));
     builder.addCase(generatedPhotoFetchActions.SUCCESS, (state, action) => {

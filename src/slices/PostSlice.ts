@@ -30,6 +30,8 @@ export const PostSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(fetchAllPostsAction.REQUEST, (state) => {
       state.pending = true;
+      state.data = [];
+      state.error = null;
     });
     builder.addCase(fetchAllPostsAction.SUCCESS, (state, action) => {
       state.data = action.payload;

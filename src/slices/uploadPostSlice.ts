@@ -32,7 +32,7 @@ export const uploadPostSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(uploadPostAction.REQUEST, (state) => {
-      return { ...state, pending: true };
+      return { ...state, data: null, pending: true };
     });
     builder.addCase(uploadPostAction.SUCCESS, (state, action) => {
       return { ...state, pending: false, data: action.payload._id };

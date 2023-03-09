@@ -49,10 +49,7 @@ const PostForm = () => {
 
   return isPublished ? (
     <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5">
-      <div className="text-center text-sm md:text-base font-mono font-semibold">
-        Link for sharing:{' '}
-        {`${process.env.BASE_URL}/${recentlyUploadedPost.data}`}
-      </div>
+      <Input value={`${process.env.BASE_URL}/${recentlyUploadedPost.data}`} />
       <div className="flex flex-row gap-2">
         <Button
           value="Copy link"
@@ -75,21 +72,28 @@ const PostForm = () => {
     </div>
   ) : (
     <div className="w-full">
-      {recentlyUploadedPost.pending && <Loader />}
-      <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5 py-10 px-5">
-        <div className="text-center text-2xl font-semibold font-mono">
-          Publish your artwork
+      <div className="w-full bg-opacity-50 bg-gray-800 flex flex-col gap-5 py-7 px-7">
+        <div className="text-left text-3xl font-bold">
+          Make public
+          <div className="text-base text-gray-400">
+            Create public page to share
+          </div>
         </div>
         <Input
           value={artist}
           variant="submit"
           placeholder="Your name"
-          className="rounded-lg"
+          pending={recentlyUploadedPost.pending}
+          className="rounded-none"
           disabled={recentlyUploadedPost.pending}
           onInputValue={setArtist}
         />
         <div className="flex gap-2">
-          <Button value="Post" onClick={() => handleFormSubmit()} />
+          <Button
+            value="Publish"
+            disabled={recentlyUploadedPost.pending}
+            onClick={() => handleFormSubmit()}
+          />
           <Button
             value="Cancel"
             disabled={recentlyUploadedPost.pending}

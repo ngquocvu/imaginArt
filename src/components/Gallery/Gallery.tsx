@@ -16,10 +16,13 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div id="gallery" className="min-h-screen snap-start ">
+    <div id="gallery" className="min-h-screen snap-start">
       <div className="max-w-3xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-10">
-        <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6x text-center dark:text-gray-100">
+        <div className="text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6x text-center dark:text-gray-100">
           Community Gallery
+        </div>
+        <div className="text-xl font-extrabold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-6x dark:text-gray-100">
+          Newest Posts
         </div>
         <div className="grid grid-cols-1 place-items-center gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {posts.data.map((post: PostTypes, index) => {
@@ -29,6 +32,7 @@ const Gallery = () => {
                 src={post.photo}
                 prompt={post.prompt}
                 artist={post.artist}
+                id={post._id}
               />
             );
           })}
@@ -42,13 +46,15 @@ export const ArtWorkWrapper = ({
   src,
   prompt,
   artist,
+  id,
 }: {
   src: string;
   prompt: string;
-  artist: string;
+  artist?: string;
+  id?: string;
 }) => (
   <div className="h-72 w-72 relative">
-    <Artwork src={src} prompt={prompt} artist={artist} />
+    <Artwork src={src} prompt={prompt} artist={artist} id={id} />
   </div>
 );
 
