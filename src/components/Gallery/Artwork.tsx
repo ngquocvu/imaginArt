@@ -13,16 +13,14 @@ const Artwork = ({ src, prompt = '', artist = null }: ArtWordProps) => {
     saveAs(src, `${prompt}.jpg`);
   };
   return (
-    <div className="relative w-full h-full group bg-gray-800 backdrop-blur-lg">
+    <div className="relative w-full h-full group backdrop-blur-lg overflow-hidden">
       <NextImage
         alt={prompt}
         fill
         src={src}
         className={combineClassName(
-          'rounded-lg group-hover:brightness-50',
-          isLoading
-            ? 'grayscale blur-2xl scale-110'
-            : 'grayscale-0 blur-0 scale-100'
+          'rounded-lg group-hover:brightness-75',
+          isLoading ? 'grayscale blur-xl' : 'grayscale-0 blur-0 '
         )}
         onLoadingComplete={() => setIsLoading(false)}
       />

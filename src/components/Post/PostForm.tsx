@@ -19,7 +19,6 @@ const PostForm = () => {
   const { generatedPhoto } = useGeneratedPhotoStates();
   const [isPublished, setIsPublished] = useState(false);
   const [artist, setArtist] = useState('');
-  console.log(recentlyUploadedPost);
 
   useEffect(() => {
     if (recentlyUploadedPost.data) {
@@ -30,7 +29,6 @@ const PostForm = () => {
   useEffect(() => {
     return () => {
       resetUploadPost();
-      console.log('is unmounted');
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -53,15 +51,15 @@ const PostForm = () => {
     <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5">
       <div className="text-center text-sm md:text-base font-mono font-semibold">
         Link for sharing:{' '}
-        {`${process.env.API_BASE_URL}/${recentlyUploadedPost.data}`}
+        {`${process.env.BASE_URL}/${recentlyUploadedPost.data}`}
       </div>
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-row gap-2">
         <Button
-          value="Copy to clipboard"
+          value="Copy link"
           variant="default"
           onClick={() =>
             navigator.clipboard.writeText(
-              `${process.env.API_BASE_URL}/${recentlyUploadedPost.data}`
+              `${process.env.BASE_URL}/${recentlyUploadedPost.data}`
             )
           }
         />

@@ -6,7 +6,6 @@ import {
   useActions as usePostActions,
 } from '@/slices/PostSlice';
 import { PostTypes } from '@/custom-types';
-import { fetchPosts } from '@/services/post';
 
 const Gallery = () => {
   const { posts } = usePostStates();
@@ -16,8 +15,6 @@ const Gallery = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(posts);
-
   return (
     <div id="gallery" className="min-h-screen snap-start ">
       <div className="max-w-3xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-10">
@@ -26,7 +23,6 @@ const Gallery = () => {
         </div>
         <div className="grid grid-cols-1 place-items-center gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {posts.data.map((post: PostTypes, index) => {
-            console.log(post);
             return (
               <ArtWorkWrapper
                 key={index}

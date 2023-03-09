@@ -61,3 +61,8 @@ html {
   animation: loader 4s linear infinite;
   @apply bg-indigo-700 shadow-xl;
 }
+
+.transition-filters {
+  -webkit-transition: -webkit-filter 500ms linear;
+  transition: 500ms filter linear, 500ms -webkit-filter linear;
+}

@@ -30,7 +30,7 @@ const Button = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`text-white font-bold py-3 px-12 text-xs md:text-base rounded-full bg-opacity-40 w-full ${getVariantStyles()} ${
+      className={`text-white font-bold py-3 px-12 text-xs md:text-base rounded-full bg-opacity-40 hover:bg-opacity-60 w-full ${getVariantStyles()} ${
         disabled && disabledStyles
       }`}
     >
