@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 export default function Home() {
   return (
-    <div className="snap-y snap-mandatory h-screen min-w-full scroll-smooth bg-gray-900 overflow-x-hidden">
+    <div className="snap-y snap-mandatory h-screen w-full scroll-smooth bg-gray-900 overflow-x-hidden">
       <Head>
         <title>ImaginArt | AI Pics Generator </title>
       </Head>
