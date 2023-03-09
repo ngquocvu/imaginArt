@@ -18,10 +18,10 @@ const Gallery = () => {
   return (
     <div id="gallery" className="min-h-screen snap-start">
       <div className="max-w-3xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-10">
-        <div className="text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl lg:text-6x text-center dark:text-gray-100">
+        <div className="text-xl font-extrabold leading-none tracking-tight text-gray-300 md:text-5xl lg:text-6x text-center">
           Community Gallery
         </div>
-        <div className="text-xl font-extrabold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-6x dark:text-gray-100">
+        <div className="text-xl font-extrabold leading-none tracking-tight text-gray-300">
           Newest Posts
         </div>
         <div className="grid grid-cols-1 place-items-center gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">

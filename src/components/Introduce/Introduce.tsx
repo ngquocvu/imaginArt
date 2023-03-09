@@ -57,7 +57,7 @@ const Introduce = () => {
             />
           </div>
         </div>
-        <div className="text-gray-200 font-mono text-center text-xs md:text-base absolute bottom-5">
+        <div className="text-gray-400 font-semibold text-center text-xs md:text-base">
           Credits:{' '}
           <Link
             href="https://github.com/nguyen-quoc-vu"
