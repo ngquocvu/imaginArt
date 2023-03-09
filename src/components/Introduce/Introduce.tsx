@@ -32,8 +32,8 @@ const Introduce = () => {
       <div className="max-w-2xl w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:min-w-5xl lg:max-w-7xl lg:px-8 flex flex-col items-center justify-around min-h-screen overflow-x-hidden">
         <BackgroundBlob />
         <div>
-          <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6x text-center backdrop-blur-2xl px-8 py-3 text-gray-50 text-opacity-80">
-            Artwork Generator
+          <div className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6x text-center backdrop-blur-2xl px-8 py-3 shadow- text-gray-50 text-opacity-70 rounded-full">
+            ImaginArt
           </div>
           <div className="mb-4 text-lg md:text-xl font-bold leading-none tracking-tight text-gray-400 text-center dark:text-gray-400">
             Free online AI picture generator from text

@@ -49,14 +49,17 @@ const PostForm = () => {
 
   return isPublished ? (
     <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5">
-      <Input value={`${process.env.BASE_URL}/${recentlyUploadedPost.data}`} />
+      <Input
+        value={`${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`}
+        disabled
+      />
       <div className="flex flex-row gap-2">
         <Button
           value="Copy link"
           variant="default"
           onClick={() =>
             navigator.clipboard.writeText(
-              `${process.env.BASE_URL}/${recentlyUploadedPost.data}`
+              `${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`
             )
           }
         />
@@ -73,9 +76,9 @@ const PostForm = () => {
   ) : (
     <div className="w-full">
       <div className="w-full bg-opacity-50 bg-gray-800 flex flex-col gap-5 py-7 px-7">
-        <div className="text-left text-3xl font-bold">
+        <div className="text-left text-xl md:text-3xl font-bold">
           Make public
-          <div className="text-base text-gray-400">
+          <div className="text-sm md:text-base text-gray-400">
             Create public page to share
           </div>
         </div>

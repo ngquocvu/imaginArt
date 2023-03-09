@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="snap-y snap-mandatory h-screen min-w-full scroll-smooth bg-gray-900 overflow-x-hidden">
       <Head>
-        <title>Open Dalle | AI Pics Generator </title>
+        <title>ImaginArt | AI Pics Generator </title>
       </Head>
       <Introduce />
       <Gallery />

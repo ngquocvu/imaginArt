@@ -15,7 +15,7 @@ const SharedPost = ({ _id, photo, artist, prompt }: PostTypes) => {
       <div className="max-w-xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8 flex flex-col md:flex-row items-center justify-center gap-10">
         <BackgroundBlob />
         <div className="shrink-0 relative h-[20rem] w-[20rem] md:h-[35rem] md:w-[35rem] bg-gray-800 bg-opacity-50 dark:text-gray-100 rounded-xl overflow-hidden shadow-lg">
-          <Artwork src={photo} prompt={prompt} />
+          <Artwork src={photo} />
         </div>
         <div className="w-full h-full flex flex-col justify-center items-center text-gray-200 gap-4">
           <p className="text-center text-base md:text-3xl font-serif text-gray-200">
