@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ImaginAI
+The name is a play on words, combining "imagination" with "AI" to suggest that the app is a tool for turning text into images using the power of artificial intelligence. It's catchy, easy to remember, and gives a sense of creativity and innovation, which are important qualities for an AI-based application. Additionally, the name has a positive and optimistic vibe to it, which can be appealing to potential users.
 
 ## Getting Started
 
