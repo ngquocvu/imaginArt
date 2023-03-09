@@ -27,7 +27,7 @@ const Introduce = () => {
   return (
     <div
       id="introduce"
-      className={`snap-start flex-col flex backdrop-opacity-60`}
+      className={`snap-start w-full flex-col flex backdrop-opacity-60 relative`}
     >
       <div className="max-w-2xl w-full mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:min-w-5xl lg:max-w-7xl lg:px-8 flex flex-col items-center justify-around min-h-screen overflow-x-hidden">
         <BackgroundBlob />
