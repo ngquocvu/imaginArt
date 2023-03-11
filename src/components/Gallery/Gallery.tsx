@@ -24,16 +24,20 @@ const Gallery = () => {
         <div className="text-xl font-extrabold leading-none tracking-tight text-gray-300">
           Newest Posts
         </div>
-        <div className="grid grid-cols-1 place-items-center gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="grid grid-cols-1 place-items-center gap-y-10 gap-x-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 l:gap-x-5 xl:gap-x-8">
           {posts.data.map((post: PostTypes, index) => {
             return (
-              <ArtWorkWrapper
+              <div
                 key={index}
-                src={post.photo}
-                prompt={post.prompt}
-                artist={post.artist}
-                id={post._id}
-              />
+                className="xl:first:col-span-2 xl:first:row-span-2 xl:first:h-full xl:first:w-full h-[16rem] w-[16rem] relative overflow-hidden rounded-lg"
+              >
+                <ArtWorkWrapper
+                  src={post.photo}
+                  prompt={post.prompt}
+                  artist={post.artist}
+                  id={post._id}
+                />
+              </div>
             );
           })}
         </div>
@@ -52,10 +56,6 @@ export const ArtWorkWrapper = ({
   prompt: string;
   artist?: string;
   id?: string;
-}) => (
-  <div className="h-72 w-72 relative">
-    <Artwork src={src} prompt={prompt} artist={artist} id={id} />
-  </div>
-);
+}) => <Artwork src={src} prompt={prompt} artist={artist} id={id} />;
 
 export default Gallery;

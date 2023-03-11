@@ -1,6 +1,5 @@
-import { combineClassName } from '@/utils';
+import { combineClassName, stringShortening } from '@/utils';
 import NextImage from 'next/image';
-import { useState } from 'react';
 import { saveAs } from 'file-saver';
 import Link from 'next/link';
 type ArtWordProps = {
@@ -10,7 +9,6 @@ type ArtWordProps = {
   id?: string;
 };
 const Artwork = ({ src, prompt = '', artist = null, id }: ArtWordProps) => {
-  const [isLoading, setIsLoading] = useState(true);
   const handleOnSave = () => {
     saveAs(src, `${prompt}.jpg`);
   };
@@ -21,11 +19,7 @@ const Artwork = ({ src, prompt = '', artist = null, id }: ArtWordProps) => {
           alt={prompt}
           fill
           src={src}
-          className={combineClassName(
-            'rounded-lg group-hover:brightness-50',
-            isLoading ? 'grayscale blur-xl' : 'grayscale-0 blur-0 '
-          )}
-          onLoadingComplete={() => setIsLoading(false)}
+          className={combineClassName('group-hover:brightness-50')}
         />
         <button
           onClick={handleOnSave}
@@ -41,7 +35,9 @@ const Artwork = ({ src, prompt = '', artist = null, id }: ArtWordProps) => {
           <span>Save</span>
         </button>
         <div className="hidden group-hover:block absolute left-2 bottom-2 font-bold text-gray-200 text-base md:text-xl m-4">
-          {prompt}
+          {prompt.split(' ').length > 20
+            ? stringShortening(prompt, 20) + '...'
+            : prompt}
           {artist && <div className="md:text-base text-sm">- {artist} -</div>}
         </div>
       </div>

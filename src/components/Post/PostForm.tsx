@@ -6,13 +6,13 @@ import {
   useActions as useUploadPostActions,
   useStates as useUploadPostStates,
 } from '@/slices/uploadPostSlice';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Loader from '../Common/Loader';
 import Button from '../Introduce/Button';
 import Input from '../Introduce/Input';
 
 const PostForm = () => {
+  const router = useRouter();
   const { resetGeneratedPhotoState } = useGeneratedPhotoActions();
   const { uploadPost, resetUploadPost } = useUploadPostActions();
   const { recentlyUploadedPost } = useUploadPostStates();
@@ -51,18 +51,26 @@ const PostForm = () => {
     <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5">
       <Input
         value={`${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`}
-        disabled
+        rightButtonValue="Copy"
+        className="rounded-none"
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigator.clipboard.writeText(
+            `${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`
+          );
+        }}
       />
       <div className="flex flex-row gap-2">
-        <Button
+        {/* <Button
           value="Copy link"
           variant="default"
-          onClick={() =>
-            navigator.clipboard.writeText(
-              `${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`
-            )
-          }
-        />
+          onClick={() => {
+            const url = `${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`;
+            router.push(
+              `https://www.facebook.com/sharer/sharer.php?u=${url}`
+            );
+          }}
+        /> */}
         <Button
           value="Close"
           variant="error"
