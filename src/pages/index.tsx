@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="snap-y snap-mandatory h-screen w-full scroll-smooth bg-gray-900 overflow-x-hidden">
       <Head>
-        <title>ImaginArt | AI Pics Generator </title>
+        <title>ImaginArt | Home </title>
       </Head>
       <Introduce />
       <Gallery />

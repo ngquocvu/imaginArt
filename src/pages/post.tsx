@@ -9,6 +9,7 @@ import {
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
@@ -31,6 +32,9 @@ const Post = () => {
 
   return (
     <>
+      <Head>
+        <title>ImaginArt | Post </title>
+      </Head>
       <div className="min-h-screen relative backdrop-opacity-50 bg-gray-900 overflow-x-hidden">
         <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-2xl lg:px-8 flex justify-center">
           <div className="flex gap-5 flex-col w-full justify-center items-center mt-4 max-w-5xl text-gray-300">

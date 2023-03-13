@@ -16,7 +16,6 @@ const MyApp = function ({ Component, pageProps }: AppProps) {
             'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
           }
         />
-        <title>ImaginArt</title>
       </Head>
       <Script
         strategy="afterInteractive"
