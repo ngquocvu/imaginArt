@@ -1,5 +1,4 @@
 import BackgroundBlob from '@/components/Introduce/BackgroundBlob';
-import Button from '@/components/Introduce/Button';
 import Input from '@/components/Introduce/Input';
 import GeneratedPhotoSection from '@/components/Post/GeneratedPhoto';
 import PostForm from '@/components/Post/PostForm';
@@ -7,10 +6,14 @@ import {
   useActions as useGeneratedPhotoActions,
   useStates,
 } from '@/slices/GeneratedPhotoSlice';
+import { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 const Post = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { generatedPhoto } = useStates();
   const { fetchGeneratedPhoto } = useGeneratedPhotoActions();
@@ -38,10 +41,8 @@ const Post = () => {
               onSubmit={(e) => handleOnSubmit(e)}
               disabled={generatedPhoto.pending}
               pending={generatedPhoto.pending}
-              rightButtonValue="Draw"
-              placeholder={
-                'An oil pastel drawing of an annoyed cat in a spaceship...'
-              }
+              rightButtonValue={t('home.draw') as string}
+              placeholder={t('home.placeholder') as string}
             />
             <GeneratedPhotoSection /> {generatedPhoto.data && <PostForm />}
           </div>
@@ -51,4 +52,11 @@ const Post = () => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common'])),
+    },
+  };
+};
 export default Post;

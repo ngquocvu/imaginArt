@@ -1,0 +1,38 @@
+{
+  "home": {
+    "home-title": "ImaginArt",
+    "home-description": "Free online AI picture generator from text",
+    "surprise-me": "Surprise me",
+    "community-gallery": "Community gallery",
+    "credits": "Credits",
+    "powered-by": "Powered by",
+    "placeholder": "An oil pastel drawing of an annoyed cat in a spaceship...",
+    "draw": "draw",
+    "newest-post": "Newest post",
+    "back-home": "Back home"
+  },
+  "post": {
+    "back-home": "Back home"
+  },
+  "generated-photo": {
+    "estimated-time": "Estimated time",
+    "tips": "Tips: Hover the generated photo to see its prompt and download button",
+    "enter-any-prompt": "Enter any prompt in your mind and click draw to generate."
+  },
+  "artwork": {
+    "save": "Save"
+  },
+  "post-form": {
+    "make-public": "Make public",
+    "create-public-page": "Create public page to share",
+    "cancel": "Cancel",
+    "publish": "Publish",
+    "your-name": "Your name",
+    "close": "Close",
+    "copy": "Copy",
+    "gallery": "Gallery"
+  },
+  "share": {
+    "generate-more": "Generate more"
+  }
+}
