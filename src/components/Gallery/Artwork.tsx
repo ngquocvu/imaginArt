@@ -2,6 +2,7 @@ import { combineClassName, stringShortening } from '@/utils';
 import NextImage from 'next/image';
 import { saveAs } from 'file-saver';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 type ArtWordProps = {
   src: string;
   prompt?: string;
@@ -9,6 +10,7 @@ type ArtWordProps = {
   id?: string;
 };
 const Artwork = ({ src, prompt = '', artist = null, id }: ArtWordProps) => {
+  const { t } = useTranslation('');
   const handleOnSave = () => {
     saveAs(src, `${prompt}.jpg`);
   };
@@ -32,7 +34,7 @@ const Artwork = ({ src, prompt = '', artist = null, id }: ArtWordProps) => {
           >
             <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
           </svg>
-          <span>Save</span>
+          <span>{t('artwork.save')}</span>
         </button>
         <div className="hidden group-hover:block absolute left-2 bottom-2 font-bold text-gray-200 text-base md:text-xl m-4">
           {prompt.split(' ').length > 20

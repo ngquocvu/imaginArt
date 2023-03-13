@@ -6,12 +6,14 @@ import {
   useActions as useUploadPostActions,
   useStates as useUploadPostStates,
 } from '@/slices/uploadPostSlice';
+import { useTranslation } from 'next-i18next';
 import { Router, useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Button from '../Introduce/Button';
 import Input from '../Introduce/Input';
 
 const PostForm = () => {
+  const { t } = useTranslation('');
   const router = useRouter();
   const { resetGeneratedPhotoState } = useGeneratedPhotoActions();
   const { uploadPost, resetUploadPost } = useUploadPostActions();
@@ -51,7 +53,7 @@ const PostForm = () => {
     <div className="w-full bg-opacity-50 bg-gray-800 p-4 flex flex-col gap-5">
       <Input
         value={`${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`}
-        rightButtonValue="Copy"
+        rightButtonValue={t('post-form.copy') as string}
         className="rounded-none"
         onSubmit={(e) => {
           e.preventDefault();
@@ -61,18 +63,15 @@ const PostForm = () => {
         }}
       />
       <div className="flex flex-row gap-2">
-        {/* <Button
-          value="Copy link"
+        <Button
+          value={t('post-form.gallery') as string}
           variant="default"
           onClick={() => {
-            const url = `${process.env.BASE_URL}/share/${recentlyUploadedPost.data}`;
-            router.push(
-              `https://www.facebook.com/sharer/sharer.php?u=${url}`
-            );
+            router.push('/#gallery');
           }}
-        /> */}
+        />
         <Button
-          value="Close"
+          value={t('post-form.close') as string}
           variant="error"
           onClick={() => {
             resetGeneratedPhotoState();
@@ -85,15 +84,15 @@ const PostForm = () => {
     <div className="w-full">
       <div className="w-full bg-opacity-50 bg-gray-800 flex flex-col gap-5 py-7 px-7">
         <div className="text-left text-xl md:text-3xl font-bold">
-          Make public
+          {t('post-form.make-public')}
           <div className="text-sm md:text-base text-gray-400">
-            Create public page to share
+            {t('post-form.create-public-page')}
           </div>
         </div>
         <Input
           value={artist}
           variant="submit"
-          placeholder="Your name"
+          placeholder={t('post-form.your-name') as string}
           pending={recentlyUploadedPost.pending}
           className="rounded-none"
           disabled={recentlyUploadedPost.pending}
@@ -101,12 +100,12 @@ const PostForm = () => {
         />
         <div className="flex gap-2">
           <Button
-            value="Publish"
+            value={t('post-form.publish') as string}
             disabled={recentlyUploadedPost.pending}
             onClick={() => handleFormSubmit()}
           />
           <Button
-            value="Cancel"
+            value={t('post-form.cancel') as string}
             disabled={recentlyUploadedPost.pending}
             variant="error"
             onClick={() => {

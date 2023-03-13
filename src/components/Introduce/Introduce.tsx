@@ -1,17 +1,19 @@
-import { useAppDispatch } from '@/hooks/useRedux';
 import { useActions } from '@/slices/GeneratedPhotoSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { surpriseMePrompts } from '../../constants/prompts';
 import BackgroundBlob from './BackgroundBlob';
 import Button from './Button';
 import Input from './Input';
+import { LOCALES } from '@/constants';
 
 const Introduce = () => {
   const router = useRouter();
   const { fetchGeneratedPhoto } = useActions();
   const [inputValue, setInputValue] = useState('');
+  const { t } = useTranslation('');
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,36 +38,48 @@ const Introduce = () => {
             ImaginArt
           </div>
           <div className="mb-4 text-lg md:text-xl font-bold text-gray-400 text-center dark:text-gray-400">
-            Free online AI picture generator from text
+            {t('home.home-description')}
           </div>
         </div>
         <div className="flex gap-10 flex-col w-full justify-center items-center mt-4 md:w-2/3">
           <Input
-            rightButtonValue="Draw"
-            placeholder={
-              'An oil pastel drawing of an annoyed cat in a spaceship...'
-            }
+            rightButtonValue={t('home.draw') as string}
+            placeholder={t('home.placeholder') as string}
             value={inputValue}
             onInputValue={setInputValue}
             onSubmit={(e) => handleOnSubmit(e)}
           />
           <div className="flex gap-2 md:gap-5 flex-col md:flex-row md:w-2/3 w-full">
-            <Button onClick={handleSurpriseMeBtn} value={'Surprise me'} />
+            <Button
+              onClick={handleSurpriseMeBtn}
+              value={t('home.surprise-me')}
+            />
             <Button
               onClick={() => router.push('#gallery')}
-              value={'Community gallery'}
+              value={t('home.community-gallery')}
             />
           </div>
         </div>
-        <div className="text-gray-400 font-semibold text-center text-xs md:text-base">
-          Credits:{' '}
-          <Link
-            href="https://github.com/nguyen-quoc-vu"
-            className="text-blue-500 underline"
-          >
-            Vu Nguyen
-          </Link>{' '}
-          - Powered by OpenAI
+        <div className="flex flex-col gap-6 justify-center items-center">
+          <p className="text-gray-400 font-semibold text-center text-xs md:text-base">
+            {t('home.credits') + ': '}
+            <Link
+              href="https://github.com/nguyen-quoc-vu"
+              className="text-blue-500 underline"
+            >
+              Vu Nguyen
+            </Link>
+            {` - ${t('home.powered-by')} OpenAI`}
+          </p>
+          <p className="font-light text-gray-400 flex gap-2">
+            <Link href={'/'} locale={LOCALES.VI}>
+              Tiếng Việt
+            </Link>
+            |
+            <Link href={'/'} locale={LOCALES.EN}>
+              English
+            </Link>
+          </p>
         </div>
       </div>
     </div>

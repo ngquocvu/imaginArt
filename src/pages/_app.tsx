@@ -1,11 +1,12 @@
 import { store } from '@/store';
+import { appWithTranslation } from 'next-i18next';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 import { Provider } from 'react-redux';
 
-export default function App({ Component, pageProps }: AppProps) {
+const MyApp = function ({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <Head>
@@ -32,4 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </Provider>
   );
-}
+};
+
+export default appWithTranslation(MyApp);

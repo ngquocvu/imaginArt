@@ -3,13 +3,17 @@ import BackgroundBlob from '@/components/Introduce/BackgroundBlob';
 import Button from '@/components/Introduce/Button';
 import { AxiosReturnedType, PostTypes } from '@/custom-types';
 import axios, { AxiosResponse } from 'axios';
+import { t } from 'i18next';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const SharedPost = ({ _id, photo, artist, prompt }: PostTypes) => {
+const SharedPost = ({ photo, artist, prompt }: PostTypes) => {
   const router = useRouter();
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen backdrop-opacity-50 bg-gray-900 overflow-x-hidden">
       <div className="max-w-xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-5xl lg:px-8 flex flex-col md:flex-row items-center justify-center gap-10">
@@ -24,18 +28,21 @@ const SharedPost = ({ _id, photo, artist, prompt }: PostTypes) => {
           <p className="text-left text-sm md:text-lg font-serif text-gray-400">
             - {artist} -
           </p>
-          <Button value="Generate  More" onClick={() => router.push('/')} />
+          <Button
+            value={t('share.generate-more')}
+            onClick={() => router.push('/')}
+          />
         </div>
       </div>
       <div className="text-gray-200 font-mono text-center w-full text-xs md:text-base absolute bottom-5">
-        Credits:{' '}
+        {t('home.credits') + ': '}
         <Link
           href="https://github.com/nguyen-quoc-vu"
           className="text-blue-500 underline"
         >
           Vu Nguyen
-        </Link>{' '}
-        - Powered by OpenAI
+        </Link>
+        {` - ${t('home.powered-by')} OpenAI`}
       </div>
     </div>
   );
@@ -47,6 +54,7 @@ type PageParams = {
 
 export const getServerSideProps = async ({
   params,
+  locale,
 }: GetServerSidePropsContext<PageParams>): Promise<
   GetServerSidePropsResult<PostTypes | null>
 > => {
@@ -56,6 +64,7 @@ export const getServerSideProps = async ({
     const { _id, prompt, photo, artist } = data.data;
     return {
       props: {
+        ...(await serverSideTranslations(locale as string, ['common'])),
         prompt,
         photo,
         artist,

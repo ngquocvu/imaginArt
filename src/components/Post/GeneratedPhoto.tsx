@@ -1,12 +1,15 @@
 import { useStates } from '@/slices/GeneratedPhotoSlice';
+import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Loader from '../Common/Loader';
 import Artwork from '../Gallery/Artwork';
-import PostForm from './PostForm';
 
 const GeneratedPhotoSection = () => {
   const { generatedPhoto } = useStates();
   const [time, setTime] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let intervalID: ReturnType<typeof setInterval>;
@@ -29,11 +32,8 @@ const GeneratedPhotoSection = () => {
           <Loader />
           <div className="w-full h-full flex flex-col justify-center items-center text-center gap-4 text-xs md:text-sm text-gray-200 p-4">
             <p>{time}s</p>
-            <p>Estimated time: 10-20s</p>
-            <p>
-              Tips: Hover the generated photo to see its prompt and download
-              button
-            </p>
+            <p>{t('generated-photo.estimated-time')}: 10-20s</p>
+            <p>{t('generated-photo.tips')}</p>
           </div>
         </div>
       ) : generatedPhoto.error ? (
@@ -48,10 +48,11 @@ const GeneratedPhotoSection = () => {
           />
         </>
       ) : (
-        <div className="w-full h-full flex flex-col justify-center items-center text-gray-200 p-4">
-          <p className="text-center">
-            Enter any prompt in your mind and click draw to generate.
-          </p>
+        <div className="w-full h-full flex flex-col justify-center items-center text-gray-200 p-4 gap-6">
+          <p className="text-center">{t('generated-photo.enter-any-prompt')}</p>
+          <Link href="/" className="underline">
+            {t('post.back-home')}
+          </Link>
         </div>
       )}
     </div>

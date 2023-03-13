@@ -1,0 +1,37 @@
+{
+  "home": {
+    "home-title": "ImaginArt",
+    "home-description": "Công cụ chuyển đổi chữ thành hình ảnh miễn phí",
+    "surprise-me": "Gợi ý",
+    "community-gallery": "Kho tranh của mọi người",
+    "credits": "Credits",
+    "powered-by": "Hỗ trợ bởi",
+    "draw": "Tạo ảnh",
+    "placeholder": "An oil pastel drawing of an annoyed cat in a spaceship...",
+    "newest-post": "Mới nhất"
+  },
+  "generated-photo": {
+    "estimated-time": "Thời gian đợi dự kiến",
+    "tips": "Mẹo: rê chuột hoặc nhấn vào ảnh để hiển thị nút tải xuống và thông tin ảnh",
+    "enter-any-prompt": "Điền vào bất kỳ ý tưởng nào của bạn để tạo ra ảnh."
+  },
+  "post": {
+    "back-home": "Về trang chủ"
+  },
+  "artwork": {
+    "save": "Lưu"
+  },
+  "post-form": {
+    "make-public": "Chia sẻ ảnh",
+    "create-public-page": "Tạo link để chia sẻ cho mọi người",
+    "cancel": "Hủy",
+    "publish": "Đăng",
+    "your-name": "Tên của bạn",
+    "close": "Đóng",
+    "copy": "Sao chép",
+    "gallery": "Kho ảnh"
+  },
+  "share": {
+    "generate-more": "Tạo thêm"
+  }
+}
