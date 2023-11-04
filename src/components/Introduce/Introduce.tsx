@@ -64,7 +64,7 @@ const Introduce = () => {
           <p className="text-gray-400 font-semibold text-center text-xs md:text-base">
             {t('home.credits') + ': '}
             <Link
-              href="https://github.com/nguyen-quoc-vu"
+              href="https://github.com/ngquocvu"
               className="text-blue-500 underline"
             >
               Vu Nguyen
